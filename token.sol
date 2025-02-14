@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.11;
+pragma solidity ^0.8.24;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract Litas is ERC20, Ownable, ReentrancyGuard {
+contract Litas is ERC20, ReentrancyGuard {
 
     struct Stake {
         uint256 amount;
@@ -20,7 +20,7 @@ contract Litas is ERC20, Ownable, ReentrancyGuard {
     event TokensStaked(address indexed staker, uint256 amount, uint256 duration, uint256 startTime);
     event TokensClaimed(address indexed staker, uint256 amount, uint256 stakeIndex);
 
-    constructor(string memory name, string memory symbol, uint256 initialSupply, address initialOwner) ERC20(name, symbol) Ownable(initialOwner) {
+    constructor(string memory name, string memory symbol, uint256 initialSupply, address initialOwner) ERC20(name, symbol) {
         _mint(initialOwner, initialSupply * 10**decimals());
     }
 
