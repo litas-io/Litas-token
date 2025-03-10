@@ -55,6 +55,7 @@ contract Litas is ERC20, ReentrancyGuard {
         ERC20(name, symbol) 
     {
         // Mint the initial supply (scaled by ERC20 decimals) to the provided owner address
+        require(initialSupply > 0, "Initial supply must be greater than zero");
         _mint(initialOwner, initialSupply * 10**decimals());
     }
 
@@ -74,6 +75,7 @@ contract Litas is ERC20, ReentrancyGuard {
     /// @param durationInDays The duration (in days) for which the tokens will be locked
     function stake(uint256 amount, uint256 durationInDays) public nonReentrant {
         require(amount > 0, "Cannot stake 0 tokens");
+        require(durationInDays > 0, "Staking duration must be greater than zero");
         require(balanceOf(msg.sender) >= amount, "Insufficient token balance");
 
         // Transfer the tokens from the user to this contract
